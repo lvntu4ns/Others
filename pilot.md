@@ -100,6 +100,8 @@ Stack level 0, frame at 0x7fffffffdb10:
 40
 ```
 
+* Vậy payload sẽ có dạng như thế này: |----(shell)---Padding------------|--Leak Address--|
+* Khi được đưa vào stack, leak address sẽ overwrite lên return address, shell code sẽ nằm trong stack và thực thi. 
 * file exploit:
 ```
 from pwn import *

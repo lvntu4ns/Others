@@ -93,13 +93,12 @@ Stack level 0, frame at 0x7fffffffdb10:
  Saved registers:
   rbp at 0x7fffffffdb00, rip at 0x7fffffffdb08
 ```
-
+* Leak address được chương trình là địa chỉ của `buf`, khi truyền vào payload, nó sẽ đè lên địa chỉ của thanh ghi rip và nó trỏ đến `buf`
 * Như vậy ta có được offset cần là:
 ```
 >>> 0x7fffffffdb08-0x7fffffffdae0
 40
 ```
-
 * Vậy payload sẽ có dạng như thế này: |----(shell)---Padding------------|--Leak Address--|
 * Khi được đưa vào stack, leak address sẽ overwrite lên return address, shell code sẽ nằm trong stack và thực thi. 
 * file exploit:
